@@ -1,5 +1,8 @@
 package fr.projetRadar;
 
+
+
+
 public class Radar {
 	private int id;
 	private static int compteur;
@@ -9,15 +12,16 @@ public class Radar {
 	private int pointsRetires;
 	private String peines;
 	private boolean emailRecu;
-	private Vehicule[] vehicules;
 	
 	
+	public Radar() {
+	
+	}
 	
 	public Radar(Vehicule[] vehicules) {
-		this.vehicules = vehicules;
+		demarrerRadar(vehicules);
 	}
 
-<<<<<<< HEAD
 	public boolean isFeuRouge() {
 		return feuRouge;
 	}
@@ -70,8 +74,8 @@ public class Radar {
 		return id;
 	}
 
-	public void flasher() {
-		
+	public void flasher(Vehicule vehicule) {
+	 	System.out.println(vehicule.getPlaqueImmat());  
 	}
 	
 	public void envoiAmende() {
@@ -81,7 +85,22 @@ public class Radar {
 	public void envoiMail() {
 		
 	}
+	
+	/**
+	 * methode pour génerer la vitesse en plus +20 ou -20
+	 * **/
+	
+	private void demarrerRadar(Vehicule[] vehicules) {
+		while(true) {
+			for(Vehicule vehicule: vehicules) {
+	    		flasher(vehicule);    		    		
+	    		try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+		}	
+	}
 }
-=======
-}
->>>>>>> c736d64b4e898efab908fb03dce634ada370ab2d

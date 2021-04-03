@@ -17,6 +17,7 @@ public class Radar {
 		this.vehicules = vehicules;
 	}
 
+<<<<<<< HEAD
 	public boolean isFeuRouge() {
 		return feuRouge;
 	}
@@ -81,3 +82,6 @@ public class Radar {
 		
 	}
 }
+=======
+}
+>>>>>>> c736d64b4e898efab908fb03dce634ada370ab2d

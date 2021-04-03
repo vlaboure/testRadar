@@ -1,0 +1,17 @@
+console de jeu
+
+etat:
+
+couleur 
+marque 
+prix 
+modele
+estAllume
+
+Comportement:
+
+allumer
+connecter une mannette
+jouer
+brancher(recharger)
+parametrer

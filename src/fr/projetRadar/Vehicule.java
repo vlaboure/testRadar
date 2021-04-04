@@ -1,5 +1,7 @@
 package fr.projetRadar;
 
+import java.util.Random;
+
 public class Vehicule {
 	private String plaqueImmat ;
 	private String marque;
@@ -21,7 +23,10 @@ public class Vehicule {
 	}
 	
 	public void modifierVitesse() {
-		
+			int max = 20;
+			int min = -20;
+			Random r = new Random();
+			return r.nextInt(max - min ) + min;
 	}
 	
 	public void ralentir() {

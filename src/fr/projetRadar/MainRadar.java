@@ -28,12 +28,12 @@ public class MainRadar {
 		Vehicule v2 = new Vehicule();
 		v2.setPlaqueImmat("ilpmberhg");
 		v2.setVitesseLimite(vitesseLimite);
-		v2.setMarque("ford");
+		v2.setMarque("Toyota");
 		vehicules[1] = v2;
 		Vehicule v3 = new Vehicule();
 		v3.setPlaqueImmat("254sf54sdf");
 		v3.setVitesseLimite(vitesseLimite);
-		v3.setMarque("ford");
+		v3.setMarque("BMW");
 		vehicules[2] = v3;
 		return vehicules;		
 	}

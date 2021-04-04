@@ -9,18 +9,19 @@ public class Vehicule {
 	private int acceleration;
 	private String emailConducteur;
 	private int vitesseLimite;
-	
+	private int nbrProces;
 	public Vehicule() {
 		
 	}
 	public Vehicule(String plaqueImmat, String marque, int vitesse, int acceleration, String emailConducteur,
-			int vitesseLimite) {
+			int vitesseLimite, int nbrProces) {
 		this.plaqueImmat = plaqueImmat;
 		this.marque = marque;
 		this.vitesse = vitesse;
 		this.acceleration = acceleration;
 		this.emailConducteur = emailConducteur;
 		this.vitesseLimite = vitesseLimite;
+		this.nbrProces = nbrProces;
 	}
 
 
@@ -30,7 +31,7 @@ public class Vehicule {
 	}
 	
 	public int modifierVitesse() {
-			int max = 50;
+			int max = 20;
 			int min = -20;
 			Random r = new Random();
 			return r.nextInt(max - min ) + min;
@@ -41,6 +42,12 @@ public class Vehicule {
 		modifierVitesse();
 	}
 	
+	public int getNbrProces() {
+		return nbrProces;
+	}
+	public void setNbrProces(int nbrProces) {
+		this.nbrProces = nbrProces;
+	}
 	public String getMarque() {
 		return marque;
 	}

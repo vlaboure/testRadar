@@ -1,7 +1,9 @@
 package fr.projetRadar;
 
+import java.awt.image.RescaleOp;
+import java.util.Arrays;
 
-
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 public class Radar {
 	private int id;
@@ -87,10 +89,16 @@ public class Radar {
 	}
 
 	public void flasher(Vehicule vehicule) {
-		if(vehicule.getVitesse()< vitesseLimite + arrVitesses[0] && vitesseLimite>50) {
-			envoiAmende(amandes[0],classes[0],points[0],vehicule);
+		if(vehicule.getVitesse()< vitesseLimite + arrVitesses[0] && vehicule.getVitesse()>=50) {
+			System.out.println(envoiAmende(amandes[0],classes[0],points[0],vehicule));
+			
+		}else {
+			System.out.println("pas d'amende");
 		}
 	 	System.out.println(vehicule.getPlaqueImmat());
+	 	System.out.println(vehicule.getVitesse());
+	 	System.out.println(vehicule.getVitesseLimite());
+	 	System.out.println(envoiAmende(amandes[0],classes[0],points[0],vehicule));
 	 	vehicule.ralentir();
 	}
 	
@@ -111,8 +119,8 @@ public class Radar {
 				}
 			}
 		}
-		res+= res.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + "a ete flash�\n"+
-		"il roulait � une vitesse de "+ vehicule.getVitesse() + " sur une route limitee � " + vitesseLimite + ""); 
+		res+= res.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + "a ete flashe\n"+
+		"il roulait a une vitesse de "+ vehicule.getVitesse() + " sur une route limitee a " + vehicule.getVitesseLimite() + ""); 
 		return res + peine;
 	}
 	
@@ -136,17 +144,16 @@ public class Radar {
 	public void envoiMail() {
 		
 	}
-	
 	/**
 	 * methode pour g�nerer la vitesse en plus +20 ou -20
 	 * **/
 	
-	private void demarrerRadar(Vehicule[] vehicules) {
+	public String [] demarrerRadar(Vehicule[] vehicules) {
 		while(true) {
 			
 			for(Vehicule vehicule: vehicules) {
-				vehicule.genrationAleat();
-	    		flasher(vehicule);    		    		
+				vehicule.generationAleat();
+	    		flasher(vehicule);
 	    		try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -155,5 +162,10 @@ public class Radar {
 				}
 			}	
 		}	
+	}
+
+	@Override
+	public String toString() {
+		return "Radar []";
 	}
 }

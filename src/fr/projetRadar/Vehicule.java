@@ -25,12 +25,12 @@ public class Vehicule {
 
 
 
-	public void genrationAleat() {
+	public void generationAleat() {
 		setVitesse(getVitesse()+modifierVitesse());
 	}
 	
 	public int modifierVitesse() {
-			int max = 20;
+			int max = 50;
 			int min = -20;
 			Random r = new Random();
 			return r.nextInt(max - min ) + min;

@@ -9,7 +9,7 @@ public class MainRadar {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		Vehicule[] vehicules;
-		System.out.print(" quelle est la vitesse limite de la route ?");		
+		System.out.print(" quelle est la vitesse limite de la route ?");
 		int vitesseLimite = sc.nextInt();
 		Timer timer = new Timer();
 		vehicules = new Vehicule[3];
@@ -31,5 +31,4 @@ public class MainRadar {
 		vehicules[2] = v3;	
 		return vehicules;		
 	}
-
 }

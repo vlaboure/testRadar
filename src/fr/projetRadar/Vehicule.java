@@ -13,16 +13,23 @@ public class Vehicule {
 	public Vehicule() {
 		
 	}
-	
-	public Vehicule(String plaqueImmat,int vitesse,int acceleration,String emailConducteur,int vitesseLimite){
-		
+	public Vehicule(String plaqueImmat, String marque, int vitesse, int acceleration, String emailConducteur,
+			int vitesseLimite) {
+		this.plaqueImmat = plaqueImmat;
+		this.marque = marque;
+		this.vitesse = vitesse;
+		this.acceleration = acceleration;
+		this.emailConducteur = emailConducteur;
+		this.vitesseLimite = vitesseLimite;
 	}
-	
+
+
+
 	public void genrationAleat() {
-		
+		setVitesse(getVitesse()+modifierVitesse());
 	}
 	
-	public void modifierVitesse() {
+	public int modifierVitesse() {
 			int max = 20;
 			int min = -20;
 			Random r = new Random();
@@ -30,7 +37,8 @@ public class Vehicule {
 	}
 	
 	public void ralentir() {
-		
+		setVitesse(vitesseLimite);
+		modifierVitesse();
 	}
 	
 	public String getMarque() {

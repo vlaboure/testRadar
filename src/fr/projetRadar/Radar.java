@@ -90,7 +90,8 @@ public class Radar {
 		if(vehicule.getVitesse()< vitesseLimite + arrVitesses[0] && vitesseLimite>50) {
 			envoiAmende(amandes[0],classes[0],points[0],vehicule);
 		}
-	 	System.out.println(vehicule.getPlaqueImmat());  
+	 	System.out.println(vehicule.getPlaqueImmat());
+	 	vehicule.ralentir();
 	}
 	
 	public String envoiAmende(int classe,int montant,int points, Vehicule vehicule) {
@@ -142,7 +143,9 @@ public class Radar {
 	
 	private void demarrerRadar(Vehicule[] vehicules) {
 		while(true) {
+			
 			for(Vehicule vehicule: vehicules) {
+				vehicule.genrationAleat();
 	    		flasher(vehicule);    		    		
 	    		try {
 					Thread.sleep(2000);

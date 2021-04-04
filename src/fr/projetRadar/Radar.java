@@ -17,11 +17,11 @@ public class Radar {
 	private int[] classes = {3,4,5};
 	private int[] points = {1,2,3,4,5,6};
 	private String[] peines = {"Suspension de 3 ans du permis de conduire",
-			"Suspension de 3 ans du permis de conduire et Confiscation du véhicule",
-			"Suspension de 3 ans du permis de conduire (sans sursis ni « permis blanc »)",
-			"Suspension de 3 ans du permis de conduire (sans sursis ni « permis blanc ») et Confiscation du véhicule",
-			"Confiscation du véhicule en cas de récidive Suspension de 3 ans du permis de conduire (sans sursis ni « permis blanc »)"
-			+ "et Immobilisation ou confiscation du véhicule","Peine de prison de 3 mois"};
+			"Suspension de 3 ans du permis de conduire et Confiscation du vï¿½hicule",
+			"Suspension de 3 ans du permis de conduire (sans sursis ni ï¿½ permis blanc ï¿½)",
+			"Suspension de 3 ans du permis de conduire (sans sursis ni ï¿½ permis blanc ï¿½) et Confiscation du vï¿½hicule",
+			"Confiscation du vï¿½hicule en cas de rï¿½cidive Suspension de 3 ans du permis de conduire (sans sursis ni ï¿½ permis blanc ï¿½)"
+			+ "et Immobilisation ou confiscation du vï¿½hicule","Peine de prison de 3 mois"};
 	
 	public Radar() {
 	
@@ -107,7 +107,7 @@ public class Radar {
 	}
 	
 	/**
-	 * methode pour génerer la vitesse en plus +20 ou -20
+	 * methode pour gï¿½nerer la vitesse en plus +20 ou -20
 	 * **/
 	
 	private void demarrerRadar(Vehicule[] vehicules) {

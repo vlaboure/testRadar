@@ -12,16 +12,18 @@ public class Radar {
 	private int pointsRetires;
 	private boolean emailRecu;
 	private int vitesseLimite;
+	private boolean recidive = false; // r�cidive 6 points
 	private int[] arrVitesses = {20,30,40,50};
 	private int[] amandes = {68,135,1500,3750};
 	private int[] classes = {3,4,5};
-	private int[] points = {1,2,3,4,5,6};
-	private String[] peines = {"Suspension de 3 ans du permis de conduire",
-			"Suspension de 3 ans du permis de conduire et Confiscation du v�hicule",
-			"Suspension de 3 ans du permis de conduire (sans sursis ni � permis blanc �)",
-			"Suspension de 3 ans du permis de conduire (sans sursis ni � permis blanc �) et Confiscation du v�hicule",
-			"Confiscation du v�hicule en cas de r�cidive Suspension de 3 ans du permis de conduire (sans sursis ni � permis blanc �)"
-			+ "et Immobilisation ou confiscation du v�hicule","Peine de prison de 3 mois"};
+	private int[] points = {1,2,3,4,6};
+	private String[] peines = {"Suspension de 3 ans du permis de conduire et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
+			+ "et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
+			"Suspension de 3 ans du permis de conduire (sans sursis ni permis blanc ) et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
+			+ "et Confiscation possible du v�hicule si le conducteur en est le propri�taire et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
+			"Peine de prison de 3 mois et Immobilisation ou confiscation du vehicule",
+			"Peine de prison de 3 mois etSuspension de 3 ans du permis de conduire (sans sursis ni permis blanc) et Confiscation obligatoire du v�hicule si le conducteur en est le propri�taire\n"
+			+ "et Interdiction de conduire certains v�hicules � moteur pour 5 ans au plus et accomplissement d'un stage de sensibilisation � la s�curit� routi�re."};
 	
 	public Radar() {
 	
@@ -85,22 +87,50 @@ public class Radar {
 	}
 
 	public void flasher(Vehicule vehicule) {
-		
-		if(vehicule.getVitesse()< vitesseLimite + arrVitesses[1] && vitesseLimite>50) {
-			envoiAmende(amandes[0],classes[1],points[1]);
+		if(vehicule.getVitesse()< vitesseLimite + arrVitesses[0] && vitesseLimite>50) {
+			envoiAmende(amandes[0],classes[0],points[0],vehicule);
 		}
 	 	System.out.println(vehicule.getPlaqueImmat());  
 	}
 	
-	public String envoiAmende(int classe,int montant,int points) {
+	public String envoiAmende(int classe,int montant,int points, Vehicule vehicule) {
 		// System.out.println(String.format(" %d \u20AC", 123)); //%d for integer
 		String res, peine;
 		res= peine ="";
-		if(classe > 2 && !feuRouge) {
-			
+		if(!feuRouge) {
+			//3 points ou 4
+			if(points > this.points[2] && points < this.points[4]) {				
+				peine = peines[0];
+			// 6 points	
+			}else if(points == this.points[4]) {
+				if(!recidive) {
+					peine = peines[1];
+				}else {
+					peine = peines[2];
+				}
+			}
 		}
+		res+= res.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + "a ete flash�\n"+
+		"il roulait � une vitesse de "+ vehicule.getVitesse() + " sur une route limitee � " + vitesseLimite + ""); 
 		return res + peine;
 	}
+	
+	/*
+	 * private int[] arrVitesses = {20,30,40,50};
+	private int[] amandes = {68,135,1500,3750};
+	private int[] classes = {3,4,5};
+	private int[] points = {1,2,3,4,6};
+	
+{"Suspension de 3 ans du permis de conduire et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
+			+ "et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
+			"Suspension de 3 ans du permis de conduire (sans sursis ni permis blanc ) et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
+			+ "et Confiscation possible du v�hicule si le conducteur en est le propri�taire et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
+			"Peine de prison de 3 mois et Immobilisation ou confiscation du vehicule",
+			"Peine de prison de 3 mois etSuspension de 3 ans du permis de conduire (sans sursis ni permis blanc) et Confiscation obligatoire du v�hicule si le conducteur en est le propri�taire\n"
+			+ "et Interdiction de conduire certains v�hicules � moteur pour 5 ans au plus et accomplissement d'un stage de sensibilisation � la s�curit� routi�re."};
+	
+	
+	 * */
 	
 	public void envoiMail() {
 		

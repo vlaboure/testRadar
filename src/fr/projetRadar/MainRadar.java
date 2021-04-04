@@ -1,18 +1,21 @@
 package fr.projetRadar;
 
+import java.util.Scanner;
 import java.util.Timer;
-import fr.utils.Utils;
 
 public class MainRadar {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
 		Vehicule[] vehicules;
+		System.out.print(" quelle est la vitesse limite de la route ?");		
+		int vitesseLimite = sc.nextInt();
 		Timer timer = new Timer();
 		vehicules = new Vehicule[3];
 		// création des voitures
 		vehicules = creerVehicules();
-		Radar radar = new Radar(vehicules);
+		Radar radar = new Radar(vehicules, vitesseLimite);
 	}
 	
 	private static Vehicule[] creerVehicules() { 

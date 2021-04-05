@@ -1,0 +1,192 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 268435456 bytes for Failed to commit area from 0x0000000701200000 to 0x0000000711200000 of length 268435456.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./open/src/hotspot/os/windows/os_windows.cpp:3273), pid=12652, tid=15344
+#
+# JRE version:  (11.0.10+8) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (11.0.10+8-LTS-162, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=Cp1252 fr.projetRadar.MainRadar
+
+Host: Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz, 12 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.804)
+Time: Mon Apr  5 21:41:19 2021 Europe de l’Ouest (heure d’été) elapsed time: 0.013702 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001ebaa22d800):  JavaThread "Unknown thread" [_thread_in_vm, id=15344, stack(0x00000091e1500000,0x00000091e1600000)]
+
+Stack: [0x00000091e1500000,0x00000091e1600000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x613e6a]
+V  [jvm.dll+0x74c1ff]
+V  [jvm.dll+0x74d885]
+V  [jvm.dll+0x74df03]
+V  [jvm.dll+0x243b78]
+V  [jvm.dll+0x61125a]
+V  [jvm.dll+0x606165]
+V  [jvm.dll+0x2f85fc]
+V  [jvm.dll+0x2f8482]
+V  [jvm.dll+0x2fd136]
+V  [jvm.dll+0x33f6bf]
+V  [jvm.dll+0x33f0f0]
+V  [jvm.dll+0x2d5d08]
+V  [jvm.dll+0x2d6e66]
+V  [jvm.dll+0x727d17]
+V  [jvm.dll+0x7295bf]
+V  [jvm.dll+0x34c4a9]
+V  [jvm.dll+0x70d6b0]
+V  [jvm.dll+0x3b584f]
+V  [jvm.dll+0x3b7951]
+C  [jli.dll+0x520b]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x52651]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000001eba80b6930, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000001ebaa244000 GCTaskThread "GC Thread#0" [stack: 0x00000091e1600000,0x00000091e1700000] [id=4344]
+  0x000001ebaa2a0800 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000091e1700000,0x00000091e1800000] [id=532]
+  0x000001ebaa2a7000 ConcurrentGCThread "G1 Conc#0" [stack: 0x00000091e1800000,0x00000091e1900000] [id=18392]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa60354f57]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000001ebaa22ac60] Heap_lock - owner thread: 0x000001ebaa22d800
+
+Heap address: 0x0000000701200000, size: 4078 MB, Compressed Oops mode: Non-zero based: 0x0000000701200000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff73b210000 - 0x00007ff73b21f000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\javaw.exe
+0x00007ffaadbb0000 - 0x00007ffaadda5000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffaac490000 - 0x00007ffaac54d000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffaab5d0000 - 0x00007ffaab899000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffaabb10000 - 0x00007ffaabc10000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffaa5170000 - 0x00007ffaa5185000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\VCRUNTIME140.dll
+0x00007ffaa5150000 - 0x00007ffaa5168000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\jli.dll
+0x00007ffaada30000 - 0x00007ffaadadc000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffaac3c0000 - 0x00007ffaac45e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffaad430000 - 0x00007ffaad4cc000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffaac740000 - 0x00007ffaac86b000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffaabec0000 - 0x00007ffaac060000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffaab520000 - 0x00007ffaab542000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffaadb40000 - 0x00007ffaadb6a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffa7ce90000 - 0x00007ffa7d12a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.844_none_ca00b6081b84eb1d\COMCTL32.dll
+0x00007ffaab410000 - 0x00007ffaab51b000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffaab370000 - 0x00007ffaab40d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffaa2220000 - 0x00007ffaa222a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffaabe90000 - 0x00007ffaabec0000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffa809a0000 - 0x00007ffa80a3b000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\msvcp140.dll
+0x00007ffa60070000 - 0x00007ffa60b6b000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\server\jvm.dll
+0x00007ffaabc10000 - 0x00007ffaabc18000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffa91e50000 - 0x00007ffa91e59000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffa9f260000 - 0x00007ffa9f287000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffaad9c0000 - 0x00007ffaada2b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffaa9240000 - 0x00007ffaa9252000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffaa56d0000 - 0x00007ffaa56e0000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\verify.dll
+0x00007ffa94250000 - 0x00007ffa94434000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffa941e0000 - 0x00007ffa9420c000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffaab550000 - 0x00007ffaab5d0000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffaa5100000 - 0x00007ffaa5128000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\java.dll
+0x00007ffaa55e0000 - 0x00007ffaa55ea000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\jimage.dll
+0x00007ffaa50e0000 - 0x00007ffaa50f6000 	F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.844_none_ca00b6081b84eb1d;F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin\server
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 
+java_command: fr.projetRadar.MainRadar
+java_class_path (initial): F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\workspace\projetRadar\testRadar\target\classes;F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\workspace\projetRadar\testRadar\activation.jar;F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\workspace\projetRadar\testRadar\mail.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 268435456                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4276092928                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5836300                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122910970                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122910970                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=F:/Developpement_disque F/formations/cda_2021/vincentCda/new_formation/EnvDev/java/jdk/jdk-11.0.10/bin/server;F:/Developpement_disque F/formations/cda_2021/vincentCda/new_formation/EnvDev/java/jdk/jdk-11.0.10/bin;F:\Developpement_disque F\formations\cda_2021\vincentCda\new_formation\EnvDev\java\jdk\jdk-11.0.10\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Embarcadero\Studio\20.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\20.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\20.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\20.0\Bpl\Win64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Embarcadero\Studio\17.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\17.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\17.0\Bpl\Win64;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Common Files\Autodesk Shared\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Common Files\Tom Sawyer Software\8.0.0;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\nodejs\;C:\ProgramData\chocolate
+USERNAME=vincent
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.804)
+
+CPU:total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 158 stepping 10 microcode 0xb4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 16308M (4676M free)
+TotalPageFile size 21298M (AvailPageFile size 57M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 64M, peak: 320M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (11.0.10+8-LTS-162) for windows-amd64 JRE (11.0.10+8-LTS-162), built on Dec  8 2020 16:32:57 by "mach5one" with MS VC++ 15.9 (VS2017)
+
+END.

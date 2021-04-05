@@ -13,7 +13,7 @@ public class Vehicule {
 	private String emailConducteur;
 	private static int compt = 0;
 	//utilisé pour le retour à la vitesse limite après flash
-	protected static int vitesseLimite;
+	public static int vitesseLimite;
 	protected static int[] nbProces; 
 	//private int nbrProces;
 	
@@ -24,6 +24,7 @@ public class Vehicule {
 		id = compt++;
 		this.vitesse = vitesseLimite;
 		nbProces = new int[3];
+		//generationAleat();
 	}
 	
 	
@@ -47,8 +48,8 @@ public class Vehicule {
 
 
 
-	public void generationAleat() {
-		setVitesse(getVitesse()+Utils.randVitesse(-20, 40));//modifierVitesse());
+	private void generationAleat() {
+		setVitesse(getVitesse()+Utils.randVitesse(-20, 20));//modifierVitesse());
 	}
 	/*
 	public int modifierVitesse() {
@@ -56,8 +57,12 @@ public class Vehicule {
         int min = 0;
         Random r = new Random();
         return r.nextInt(max - min ) + min;
-
+ ²
 	}*/
+	public void acceleration() {
+		this.acceleration = acceleration;
+		generationAleat();
+	}
 	
 	public void ralentir() {
 		setVitesse(vitesseLimite);
@@ -105,9 +110,7 @@ public class Vehicule {
 		return acceleration;
 	}
 	
-	public void setAcceleration(int acceleration) {
-		this.acceleration = acceleration;
-	}
+
 	
 	public String getEmailConducteur() {
 		return emailConducteur;

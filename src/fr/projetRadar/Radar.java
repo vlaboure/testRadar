@@ -1,9 +1,7 @@
-package fr.projetRadar;
+	package fr.projetRadar;
 
-import java.awt.image.RescaleOp;
-import java.util.Arrays;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 public class Radar {
 	private int id;
@@ -30,7 +28,7 @@ public class Radar {
 	
 	}
 	
-	public Radar(Vehicule[] vehicules, int vitesseLimit) {
+	public Radar(Vehicule[] vehicules, int vitesseLimit) throws AddressException, MessagingException {
 		demarrerRadar(vehicules);
 		vitesseLimite = vitesseLimit;
 	}
@@ -87,7 +85,7 @@ public class Radar {
 		return id;
 	}
 
-	public void flasher(Vehicule vehicule) {
+	public void flasher(Vehicule vehicule) throws AddressException, MessagingException {
 		if(vehicule.getVitesse()< Vehicule.vitesseLimite + arrVitesses[0] && vehicule.getVitesse()>Vehicule.vitesseLimite  && Vehicule.vitesseLimite >50) {
 			System.out.println(envoiAmende(classes[0],amandes[0],points[0],vehicule));
 		}else if(vehicule.getVitesse()< Vehicule.vitesseLimite + arrVitesses[0] && vehicule.getVitesse()>Vehicule.vitesseLimite  && Vehicule.vitesseLimite <=50) {
@@ -113,7 +111,7 @@ public class Radar {
 	 	vehicule.ralentir();
 	}
 	
-	public String envoiAmende(int classe,int montant,int points, Vehicule vehicule) {
+	public String envoiAmende(int classe,int montant,int points, Vehicule vehicule) throws AddressException, MessagingException {
 		// System.out.println(String.format(" %d \u20AC", 123)); //%d for integer
 		String res, peine;
 		res= "";
@@ -131,27 +129,32 @@ public class Radar {
 					peine += peines[2] ;
 				}
 			}
+			EnvoyerMail mail = new EnvoyerMail();
+			mail.setPoints(points);
+			mail.setMailServerProperties();
+			mail.sendEmail(vehicule, montant);
+			envoiMail(points);
 		}
-		res+= res.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + " a ete flashe\n"+
+		res+= String.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + " a ete flashe\n"+
 		"il roulait a une vitesse de "+ vehicule.getVitesse() + " sur une route limitee a " + Vehicule.vitesseLimite+ 
 		"\nil est en infraction de classe " + classe +  "\nil encoure le retrait de  "+
-		points + " points de son permis et une amende forfaitaire de : " + montant + 		
-		peine); 
+		points + " points de son permis et une amende forfaitaire de : " + montant + " € "+	peine + "\n"); 
 		return res;
 	}
 	
 
 	
-	public void envoiMail() {
-		
+	public void envoiMail(int points) {
+		EnvoyerMail mail = new EnvoyerMail();
+		mail.setPoints(points);
 	}
 
-	public String [] demarrerRadar(Vehicule[] vehicules) {
+	public String [] demarrerRadar(Vehicule[] vehicules) throws AddressException, MessagingException {
 		while(true) {
 			
-			for(Vehicule vehicule: vehicules) {
-				vehicule.generationAleat();
-	    		flasher(vehicule);
+			for(Vehicule vehicule: vehicules) {	    		
+				vehicule.acceleration(); 
+				flasher(vehicule);
 	    		try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -160,6 +163,6 @@ public class Radar {
 				}
 			}	
 		}	
-	}
+	} 
 
 }

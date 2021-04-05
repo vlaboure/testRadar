@@ -61,7 +61,7 @@ public class Vehicule {
 	
 	public void ralentir() {
 		setVitesse(vitesseLimite);
-		modifierVitesse();
+		//Utils.randVitesse(-20, 40);
 	}
 	/*
 	public int getNbrProces() {

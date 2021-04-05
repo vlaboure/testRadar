@@ -14,7 +14,6 @@ public class Radar {
 	private int pointsRetires;
 	private boolean emailRecu;
 	private int vitesseLimite;
-	private boolean recidive = false; // recidive 6 points
 	private int[] arrVitesses = {20,30,40,50};
 	private int[] amandes = {68,135,1500,3750};
 	private int[] classes = {3,4,5};
@@ -89,75 +88,64 @@ public class Radar {
 	}
 
 	public void flasher(Vehicule vehicule) {
-		if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[0] && vehicule.getVitesse()>=vehicule.getVitesseLimite() && vehicule.getVitesseLimite()>50) {
-			System.out.println(envoiAmende(amandes[0],classes[0],points[0],vehicule));
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[0] && vehicule.getVitesse()>=vehicule.getVitesseLimite() && vehicule.getVitesseLimite()<=50) {
-			System.out.println(envoiAmende(amandes[1],classes[1],points[0],vehicule));
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[0] && vehicule.getVitesse()>=vehicule.getVitesseLimite()) {
-			System.out.println(envoiAmende(amandes[1],classes[1],points[1],vehicule));
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[1] && vehicule.getVitesse()>=vehicule.getVitesseLimite()) {
-			System.out.println(envoiAmende(amandes[1],classes[1],points[2],vehicule));	
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[2] && vehicule.getVitesse()>=vehicule.getVitesseLimite()) {
-			System.out.println(envoiAmende(amandes[1],classes[2],points[3],vehicule));
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[3] && vehicule.getVitesse()>=vehicule.getVitesseLimite() && vehicule.getNbrProces()<1) {
-			System.out.println(envoiAmende(amandes[2],classes[2],points[4],vehicule));
-			vehicule.setNbrProces(+1);
-		}else if(vehicule.getVitesse()< vehicule.getVitesseLimite() + arrVitesses[3] && vehicule.getVitesse()>=vehicule.getVitesseLimite() && vehicule.getNbrProces()>0) {
-			System.out.println(envoiAmende(amandes[2],classes[2],points[4],vehicule));
+		if(vehicule.getVitesse()< Vehicule.vitesseLimite + arrVitesses[0] && vehicule.getVitesse()>Vehicule.vitesseLimite  && Vehicule.vitesseLimite >50) {
+			System.out.println(envoiAmende(classes[0],amandes[0],points[0],vehicule));
+		}else if(vehicule.getVitesse()< Vehicule.vitesseLimite + arrVitesses[0] && vehicule.getVitesse()>Vehicule.vitesseLimite  && Vehicule.vitesseLimite <=50) {
+			System.out.println(envoiAmende(classes[1],amandes[1],points[0],vehicule));
+		}else if(vehicule.getVitesse()> Vehicule.vitesseLimite  + arrVitesses[0] && vehicule.getVitesse()< Vehicule.vitesseLimite  + arrVitesses[1] ) {
+			System.out.println(envoiAmende(classes[1],amandes[1],points[1],vehicule));
+		}else if(vehicule.getVitesse()> Vehicule.vitesseLimite  + arrVitesses[1] && vehicule.getVitesse()< Vehicule.vitesseLimite + arrVitesses[2])  {
+			System.out.println(envoiAmende(classes[1],amandes[1],points[2],vehicule));	
+		}else if(vehicule.getVitesse()> Vehicule.vitesseLimite + arrVitesses[2] && vehicule.getVitesse()< Vehicule.vitesseLimite  + arrVitesses[3] ) {
+			System.out.println(envoiAmende(classes[2],amandes[1],points[3],vehicule));
+			
+		}else if(vehicule.getVitesse()> Vehicule.vitesseLimite  + arrVitesses[3]) {			
+			if(Vehicule.nbProces[vehicule.getId()]<1) {
+				 System.out.println(envoiAmende(classes[2],amandes[2],points[4],vehicule));}
+				 
+			else if(vehicule.getVitesse()> Vehicule.vitesseLimite  + arrVitesses[3] && Vehicule.nbProces[vehicule.getId()]>=1) {
+				System.out.println(envoiAmende(classes[2],amandes[3],points[4],vehicule));
+			}
+			Vehicule.nbProces[vehicule.getId()]+=1;
 		}else{
 			System.out.println("pas d'amende");
 		}
-	 	System.out.println(vehicule.getVitesse());
-	 	System.out.println(vehicule.getVitesseLimite());
 	 	vehicule.ralentir();
 	}
 	
 	public String envoiAmende(int classe,int montant,int points, Vehicule vehicule) {
 		// System.out.println(String.format(" %d \u20AC", 123)); //%d for integer
 		String res, peine;
-		res= peine ="";
+		res= "";
+		peine = "";
 		if(!feuRouge) {
 			//3 points ou 4
-			if(points > this.points[2] && points < this.points[4]) {				
-				peine = peines[0];
+			peine = points > this.points[1] ? " il encoure une peine de : " : "";
+			if(points > this.points[1] && points < this.points[4]) {				
+				peine += peines[0];
 			// 6 points	
 			}else if(points == this.points[4]) {
-				if(!recidive) {
-					peine = peines[1];
+				if(Vehicule.nbProces[vehicule.getId()]<1) {
+					peine += peines[1] ;
 				}else {
-					peine = peines[2];
+					peine += peines[2] ;
 				}
 			}
 		}
 		res+= res.format(" le vehicule "+ vehicule.getPlaqueImmat() +" de marque " + vehicule.getMarque() + " a ete flashe\n"+
-		"il roulait a une vitesse de "+ vehicule.getVitesse() + " sur une route limitee a " + vehicule.getVitesseLimite() + " "); 
-		return res + peine;
+		"il roulait a une vitesse de "+ vehicule.getVitesse() + " sur une route limitee a " + Vehicule.vitesseLimite+ 
+		"\nil est en infraction de classe " + classe +  "\nil encoure le retrait de  "+
+		points + " points de son permis et une amende forfaitaire de : " + montant + 		
+		peine); 
+		return res;
 	}
 	
-	/*
-	 * private int[] arrVitesses = {20,30,40,50};
-	private int[] amandes = {68,135,1500,3750};
-	private int[] classes = {3,4,5};
-	private int[] points = {1,2,3,4,6};
-	
-{"Suspension de 3 ans du permis de conduire et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
-			+ "et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
-			"Suspension de 3 ans du permis de conduire (sans sursis ni permis blanc ) et Interdiction de conduire certains v�hicules � moteur pour 3 ans au plus\n"
-			+ "et Confiscation possible du v�hicule si le conducteur en est le propri�taire et Accomplissement d'un stage de sensibilisation � la s�curit� routi�re",
-			"Peine de prison de 3 mois et Immobilisation ou confiscation du vehicule",
-			"Peine de prison de 3 mois etSuspension de 3 ans du permis de conduire (sans sursis ni permis blanc) et Confiscation obligatoire du v�hicule si le conducteur en est le propri�taire\n"
-			+ "et Interdiction de conduire certains v�hicules � moteur pour 5 ans au plus et accomplissement d'un stage de sensibilisation � la s�curit� routi�re."};
-	
-	
-	 * */
+
 	
 	public void envoiMail() {
 		
 	}
-	/**
-	 * methode pour g�nerer la vitesse en plus +20 ou -20
-	 * **/
-	
+
 	public String [] demarrerRadar(Vehicule[] vehicules) {
 		while(true) {
 			
@@ -174,8 +162,4 @@ public class Radar {
 		}	
 	}
 
-	@Override
-	public String toString() {
-		return "Radar []";
-	}
 }
